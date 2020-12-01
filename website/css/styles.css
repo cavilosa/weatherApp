@@ -20,6 +20,11 @@ textarea {
     justify-content: space-around;
 }
 
+p {
+    width: 250px;
+    height:150px;
+}
+
 #mood, p {
     background-color: #FF69B4;
 }
