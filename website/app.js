@@ -35,6 +35,7 @@ const getWeather = async (url) => {
 }
 /* Function to POST data */
 const postData = async (url="", data = {}) => {
+    console.log(data);
     const response = await fetch(`http://localhost:8000${url}`, {
         method: "POST",
         credentials: "same-origin",
@@ -43,11 +44,11 @@ const postData = async (url="", data = {}) => {
         },
         body: JSON.stringify(data)
     });
-    console.log(response);
     try {
+        console.log("response", response);
         const newData = await response.json();
         console.log("newdata", newData);
-        return newData;
+        //return newData;
     } catch (error) {
         console.log("error", error);
     }

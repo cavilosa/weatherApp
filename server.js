@@ -38,7 +38,6 @@ function getData (req, res) {
     res.send(weatherData);
 }
 
-
 // Post Route
 
 app.post("/addWeather", addWeather);
@@ -46,14 +45,14 @@ app.post("/addWeather", addWeather);
 function addWeather(req, res){
     console.log(req.body);
     newEntry = {
-        city: req.body.name,
+        city: req.body.city,
         weather: req.body.weather,
-        temperature: req.body.main,
-        fellsLike: req.body.main,
+        temperature: req.body.temperature,
+        fellsLike: req.body.feelsLike,
         wind: req.body.wind
     }
     weatherData.push(newEntry);
-    res.send(weatherData);
+    //res.send("weatherData");
     console.log("weatherData", weatherData);
 }
 
