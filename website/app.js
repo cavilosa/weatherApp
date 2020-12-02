@@ -5,7 +5,7 @@ const apiKey = "4461cdb55e180f3d54852deaa3cbd84b";
 
 // Event listener to add function to existing HTML DOM element
 
-const feelings = document.querySelector("#mood");
+
 
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
@@ -14,7 +14,7 @@ document.getElementById("generate").addEventListener("click", generate);
 
 /* Function called by event listener */
 function generate() {
-    const zipcode = document.getElementById("zipcode").value;
+    const zipcode = document.getElementById("zip").value;
     const zipCode = zipcode.trim();
     console.log(zipCode);
     getWeather(`${endpoint}${zipCode}${zip}${apiKey}`)
@@ -66,6 +66,7 @@ const postData = async (url="", data = {}) => {
 /* Function to GET Project Data */
 
 const updateUI = async () => {
+    const feelings = document.querySelector("#feelings").value;
     const request = await fetch("http://localhost:8000/all");
     try {
         const allData = await request.json();
@@ -74,6 +75,7 @@ const updateUI = async () => {
         document.getElementById("temp").innerHTML = allData[0].temperature;
         document.getElementById("feels-like").innerHTML = allData[0].feelsLike;
         document.getElementById("wind").innerHTML = allData[0].wind;
+        document.getElementById("content").innerHTML = feelings;
     } catch(error) {
         console.log("error", error);
     }

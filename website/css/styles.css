@@ -11,9 +11,10 @@ section {
 textarea {
     width: 250px;
     height:100px;
+    background-color: #FF69B4;
 }
 
-.mood {
+#feelings {
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -23,10 +24,6 @@ textarea {
 p {
     width: 250px;
     height:150px;
-}
-
-#mood {
-    background-color: #FF69B4;
 }
 
 button {
