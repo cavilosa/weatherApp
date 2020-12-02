@@ -8,6 +8,10 @@ section {
     align-items: center;
 }
 
+.zipcode {
+    text-align: center;
+}
+
 textarea {
     width: 250px;
     height:100px;
@@ -21,9 +25,8 @@ textarea {
     justify-content: space-around;
 }
 
-p {
-    width: 250px;
-    height:150px;
+.mood {
+    text-align: center;
 }
 
 button {
@@ -35,12 +38,24 @@ button {
     font-weight: bold;
 }
 
+.recent-entry p {
+    text-align: center;
+}
+
 #entryHolder {
     font-size: 1.5em;
     background-color: inherit;
     border-radius: 10px;
-}
-
-#entryHolder * {
-
+    color: #000066;
+    display: grid;
+    grid-template-columns: 2s;
+    grid-template-rows: 6;
+    grid-template-areas:
+    "fs fs1"
+    "sc sc1"
+    "th th1"
+    "fr fr1"
+    "fif fif1"
+    "sx sx1";
+    gap: 10px;
 }

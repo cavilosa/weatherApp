@@ -64,7 +64,6 @@ const postData = async (url="", data = {}) => {
 };
 
 /* Function to GET Project Data */
-
 const updateUI = async () => {
     const feelings = document.querySelector("#feelings").value;
     const request = await fetch("http://localhost:8000/all");
