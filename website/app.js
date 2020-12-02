@@ -15,9 +15,9 @@ function generate() {
     getWeather(`https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid=${apiKey}`)
     .then ( function (data) {
         console.log("data from then", data);
-        postData("/addWeather", {city:data.name, weather: data.weather[2],
-                temperature: data.main[1], fellsLike: data.main[1],
-                wind: data.wind[0]});
+        postData("/addWeather", {city: data.name, weather: data.weather[0].description,
+                temperature: data.main.temp, fellsLike: data.main.feels_like,
+                wind: data.wind.speed});
     })
 }
 
@@ -27,7 +27,7 @@ const getWeather = async (url) => {
     //console.log(url);
     try {
         const weather = await response.json();
-        console.log(weather);
+        //console.log(weather.weather[0].description);
         return weather;
     } catch (error) {
         console.log("error", error);
@@ -35,8 +35,7 @@ const getWeather = async (url) => {
 }
 /* Function to POST data */
 const postData = async (url="", data = {}) => {
-    console.log(url);
-    const response = await fetch(url, {
+    const response = await fetch(`http://localhost:8000${url}`, {
         method: "POST",
         credentials: "same-origin",
         headers: {
@@ -44,9 +43,10 @@ const postData = async (url="", data = {}) => {
         },
         body: JSON.stringify(data)
     });
-
+    console.log(response);
     try {
         const newData = await response.json();
+        console.log("newdata", newData);
         return newData;
     } catch (error) {
         console.log("error", error);

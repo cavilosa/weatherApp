@@ -45,17 +45,16 @@ app.post("/addWeather", addWeather);
 
 function addWeather(req, res){
     console.log(req.body);
-    /*
     newEntry = {
         city: req.body.name,
-        weather: req.body.weather[2],
-        temperature: req.body.main[0],
-        fellsLike: req.body.main[1],
-        wind: req.body.wind[0]
+        weather: req.body.weather,
+        temperature: req.body.main,
+        fellsLike: req.body.main,
+        wind: req.body.wind
     }
     weatherData.push(newEntry);
     res.send(weatherData);
-    console.log(weatherData);*/
+    console.log("weatherData", weatherData);
 }
 
 app.get("/all", getData);
