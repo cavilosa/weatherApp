@@ -7,6 +7,9 @@ const apiKey = "4461cdb55e180f3d54852deaa3cbd84b";
 
 const feelings = document.querySelector("#mood");
 
+let d = new Date();
+let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+
 document.getElementById("generate").addEventListener("click", generate);
 
 /* Function called by event listener */
@@ -18,6 +21,7 @@ function generate() {
         postData("/addWeather", {city: data.name, weather: data.weather[0].description,
                 temperature: data.main.temp, fellsLike: data.main.feels_like,
                 wind: data.wind.speed});
+        updateUI();
     })
 }
 
@@ -55,3 +59,18 @@ const postData = async (url="", data = {}) => {
 };
 
 /* Function to GET Project Data */
+
+const updateUI = async () => {
+    const request = await fetch("http://localhost:8000/all");
+    try {
+        const allData = await request.json();
+        console.log(allData);
+        document.getElementById("city").innerHTML = allData[0].city;
+        document.getElementById("date").innerHTML = newDate;
+        document.getElementById("temp").innerHTML = allData[0].temperature;
+        document.getElementById("feels-like").innerHTML = allData[0].feelsLike;
+        document.getElementById("wind").innerHTML = allData[0].wind;
+    } catch(error) {
+        console.log("error", error);
+    }
+}
