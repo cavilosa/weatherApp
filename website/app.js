@@ -14,19 +14,23 @@ document.getElementById("generate").addEventListener("click", generate);
 
 /* Function called by event listener */
 function generate() {
-    const zipCode = document.getElementById("zipcode").value;
-    getWeather(`https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid=${apiKey}`)
-    .then ( function (data) {
-        console.log("data from then", data);
+    const zipcode = document.getElementById("zipcode").value;
+    const zipCode = zipcode.trim();
+    console.log(zipCode);
+    getWeather(`${endpoint}${zipCode}${zip}${apiKey}`)
+      .then ( (data) => {
+        //console.log("data from then", data);
         postData("/addWeather", {city: data.name, weather: data.weather[0].description,
-                temperature: data.main.temp, fellsLike: data.main.feels_like,
+                temperature: data.main.temp, feelsLike: data.main.feels_like,
                 wind: data.wind.speed});
-        updateUI();
     })
+
+      .then ( () => updateUI());
 }
 
 /* Function to GET Web API Data*/
 const getWeather = async (url) => {
+    console.log("the url is", url);
     const response = await fetch(url);
     //console.log(url);
     try {
@@ -39,20 +43,21 @@ const getWeather = async (url) => {
 }
 /* Function to POST data */
 const postData = async (url="", data = {}) => {
-    console.log(data);
+    //console.log(data);
     const response = await fetch(`http://localhost:8000${url}`, {
         method: "POST",
         credentials: "same-origin",
         headers: {
-            "Content-Type": "application.json"
+            //'Accept': 'application/json',
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     });
+
     try {
-        console.log("response", response);
         const newData = await response.json();
-        console.log("newdata", newData);
-        //return newData;
+        console.log("newData done");
+        return newData;
     } catch (error) {
         console.log("error", error);
     }
@@ -64,7 +69,6 @@ const updateUI = async () => {
     const request = await fetch("http://localhost:8000/all");
     try {
         const allData = await request.json();
-        console.log(allData);
         document.getElementById("city").innerHTML = allData[0].city;
         document.getElementById("date").innerHTML = newDate;
         document.getElementById("temp").innerHTML = allData[0].temperature;

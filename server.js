@@ -31,33 +31,26 @@ function listening(){
 
 const weatherData = [];
 
-app.get("/all", getData);
-// Callback function to complete GET '/all'
-
-function getData (req, res) {
-    res.send(weatherData);
-}
-
 // Post Route
-
 app.post("/addWeather", addWeather);
 
 function addWeather(req, res){
-    console.log(req.body);
+    //console.log (req.body);
     newEntry = {
         city: req.body.city,
         weather: req.body.weather,
         temperature: req.body.temperature,
-        fellsLike: req.body.feelsLike,
+        feelsLike: req.body.feelsLike,
         wind: req.body.wind
     }
-    weatherData.push(newEntry);
-    //res.send("weatherData");
-    console.log("weatherData", weatherData);
+    console.log("newentry", newEntry);
+    weatherData.unshift(newEntry);
+    res.send("weatherData done");
 }
 
 app.get("/all", getData);
-
-function getData(req, res) {
+// Callback function to complete GET '/all'
+function getData (req, res) {
+    console.log("weather data", weatherData);
     res.send(weatherData);
 }

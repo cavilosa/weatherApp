@@ -10,7 +10,7 @@ section {
 
 textarea {
     width: 250px;
-    height:150px;
+    height:100px;
 }
 
 .mood {
@@ -25,7 +25,7 @@ p {
     height:150px;
 }
 
-#mood, p {
+#mood {
     background-color: #FF69B4;
 }
 
@@ -36,4 +36,14 @@ button {
     background-color: #F8F8FF;
     height: 30px;
     font-weight: bold;
+}
+
+#entryHolder {
+    font-size: 1.5em;
+    background-color: inherit;
+    border-radius: 10px;
+}
+
+#entryHolder * {
+
 }
