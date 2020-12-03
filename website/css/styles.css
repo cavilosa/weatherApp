@@ -7,7 +7,6 @@ section {
     flex-flow: column;
     align-items: center;
     justify-content: space-evenly;
-    align-items: center;
 }
 
 .zipcode {
@@ -50,8 +49,8 @@ button {
     border-radius: 10px;
     color: #000066;
     display: grid;
-    grid-template-columns: 2s;
-    grid-template-rows: 6;
+    grid-template-columns: repeat(2 1fr);
+    grid-template-rows: repeat(2 1fr);
     grid-template-areas:
     "fs fs1"
     "sc sc1"

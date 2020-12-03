@@ -1,5 +1,4 @@
 // Setup empty JS object to act as endpoint for all routes
-
 // Express to run server and routes
 const express = require("express");
 // Start up an instance of app
@@ -35,7 +34,6 @@ const projectData = [];
 app.post("/addWeather", addWeather);
 
 function addWeather(req, res){
-    //console.log (req.body);
     newEntry = {
         city: req.body.city,
         weather: req.body.weather,
@@ -43,14 +41,12 @@ function addWeather(req, res){
         feelsLike: req.body.feelsLike,
         wind: req.body.wind
     }
-    console.log("newentry", newEntry);
     projectData.unshift(newEntry);
-    res.send("weatherData done");
 }
 
 app.get("/all", getData);
+
 // Callback function to complete GET '/all'
 function getData (req, res) {
-    console.log("weather data", projectData);
     res.send(projectData);
 }
