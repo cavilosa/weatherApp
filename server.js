@@ -45,7 +45,6 @@ function addWeather(req, res){
 }
 
 
-
 app.get("/all", getData);
 
 // Callback function to complete GET '/all'
