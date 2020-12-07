@@ -28,20 +28,19 @@ function listening(){
 
 // Initialize all route with a callback function
 
-const projectData = [];
+let projectData = {};
 
 // Post Route
 app.post("/addWeather", addWeather);
 
 function addWeather(req, res){
-    newEntry = {
-        city: req.body.city,
-        weather: req.body.weather,
-        temperature: req.body.temperature,
-        feelsLike: req.body.feelsLike,
-        wind: req.body.wind
-    }
-    projectData.unshift(newEntry);
+    projectData.city = req.body.city,
+    projectData.weather = req.body.weather,
+    projectData.temperature = req.body.temperature,
+    projectData.feelsLike = req.body.feelsLike,
+    projectData.wind = req.body.wind
+
+    console.log(projectData);
 }
 
 app.get("/all", getData);

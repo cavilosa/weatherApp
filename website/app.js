@@ -65,13 +65,13 @@ const updateUI = async () => {
     const request = await fetch("http://localhost:8000/all");
     try {
         const allData = await request.json();
-        document.getElementById("city").innerHTML = allData[0].city;
+        document.getElementById("city").innerHTML = allData.city;
         document.getElementById("date").innerHTML = newDate;
         document.getElementById("temp").innerHTML =
-                                      `${allData[0].temperature} &#176 Kelvin`;
+                                      `${allData.temperature} &#176 Kelvin`;
         document.getElementById("feels-like").innerHTML =
-                                        `${allData[0].feelsLike} &#176 Kelvin`;
-        document.getElementById("wind").innerHTML = allData[0].wind;
+                                        `${allData.feelsLike} &#176 Kelvin`;
+        document.getElementById("wind").innerHTML = allData.wind;
         document.getElementById("content").innerHTML = feelings;
     } catch(error) {
         console.log("error", error);
