@@ -34,14 +34,17 @@ let projectData = {};
 app.post("/addWeather", addWeather);
 
 function addWeather(req, res){
-    projectData.city = req.body.city,
-    projectData.weather = req.body.weather,
-    projectData.temperature = req.body.temperature,
-    projectData.feelsLike = req.body.feelsLike,
-    projectData.wind = req.body.wind
-
-    console.log(projectData);
+    newEntry = {
+        city: req.body.city,
+        weather: req.body.weather,
+        temperature: req.body.temperature,
+        feelsLike: req.body.feelsLike,
+        wind: req.body.wind
+    }
+    projectData = newEntry;
 }
+
+
 
 app.get("/all", getData);
 

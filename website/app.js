@@ -2,6 +2,7 @@
 const endpoint = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const zip = ",us&appid=";
 const apiKey = "4461cdb55e180f3d54852deaa3cbd84b";
+const units = "&units=metric";
 
 // Variable for the date
 let d = new Date();
@@ -15,7 +16,7 @@ function generate() {
     const zipcode = document.getElementById("zip").value;
     const zipCode = zipcode.trim();
 
-    getWeather(`${endpoint}${zipCode}${zip}${apiKey}`)
+    getWeather(`${endpoint}${zipCode}${zip}${apiKey}${units}`)
       .then ( (data) => {
         postData("/addWeather", {city: data.name, weather:
                 data.weather[0].description, temperature: data.main.temp,
@@ -27,7 +28,6 @@ function generate() {
 
 /* Function to GET Web API Data*/
 const getWeather = async (url) => {
-    console.log("the url is", url);
     const response = await fetch(url);
     if (response.status != 200) {
         window.alert("Try a valid USA Zip Code, please!");
@@ -68,9 +68,9 @@ const updateUI = async () => {
         document.getElementById("city").innerHTML = allData.city;
         document.getElementById("date").innerHTML = newDate;
         document.getElementById("temp").innerHTML =
-                                      `${allData.temperature} &#176 Kelvin`;
+                                      `${allData.temperature} &#176 Celsius`;
         document.getElementById("feels-like").innerHTML =
-                                        `${allData.feelsLike} &#176 Kelvin`;
+                                        `${allData.feelsLike} &#176 Celsius`;
         document.getElementById("wind").innerHTML = allData.wind;
         document.getElementById("content").innerHTML = feelings;
     } catch(error) {
