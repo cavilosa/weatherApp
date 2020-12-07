@@ -31,6 +31,7 @@ const getWeather = async (url) => {
     const response = await fetch(url);
     if (response.status != 200) {
         window.alert("Try a valid USA Zip Code, please!");
+        document.getElementById("zip").value = "";
     }
     try {
         const weather = await response.json();
@@ -71,7 +72,7 @@ const updateUI = async () => {
                                       `${allData.temperature} &#176 Celsius`;
         document.getElementById("feels-like").innerHTML =
                                         `${allData.feelsLike} &#176 Celsius`;
-        document.getElementById("wind").innerHTML = allData.wind;
+        document.getElementById("wind").innerHTML = `${allData.wind} km/h`;
         document.getElementById("content").innerHTML = feelings;
         document.getElementById("zip").value = "";
         document.querySelector("#feelings").value = "";
