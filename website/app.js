@@ -14,7 +14,7 @@ document.getElementById("generate").addEventListener("click", generate);
 function generate() {
     const zipcode = document.getElementById("zip").value;
     const zipCode = zipcode.trim();
-    console.log(zipCode);
+
     getWeather(`${endpoint}${zipCode}${zip}${apiKey}`)
       .then ( (data) => {
         postData("/addWeather", {city: data.name, weather:
@@ -29,6 +29,9 @@ function generate() {
 const getWeather = async (url) => {
     console.log("the url is", url);
     const response = await fetch(url);
+    if (response.status != 200) {
+        window.alert("Try a valid USA Zip Code, please!");
+    }
     try {
         const weather = await response.json();
         return weather;
